@@ -802,15 +802,21 @@ WITH cohort_data AS (
     SELECT 
         c.customer_id,
         DATE_FORMAT(c.registration_date, '%Y-%m') AS cohort_month,
-        DATE_FORMAT(s.sale_date, '%Y-%m') AS purchase_month
+        DATE_FORMAT(s.sale_date, '%Y-%m') AS purchase_month,
+        PERIOD_DIFF(
+            DATE_FORMAT(s.sale_date, '%Y%m'),
+            DATE_FORMAT(c.registration_date, '%Y%m')
+        ) AS months_since_registration
     FROM customers c
     LEFT JOIN sales s ON c.customer_id = s.customer_id
 )
 SELECT 
     cohort_month,
     COUNT(DISTINCT customer_id) AS cohort_size,
-    COUNT(DISTINCT CASE WHEN purchase_month = cohort_month THEN customer_id END) AS month_0,
-    COUNT(DISTINCT CASE WHEN purchase_month = DATE_FORMAT(DATE_ADD(STR_TO_DATE(CONCAT(cohort_month, '-01'), '%Y-%m-%d'), INTERVAL 1 MONTH), '%Y-%m') THEN customer_id END) AS month_1
+    COUNT(DISTINCT CASE WHEN months_since_registration = 0 THEN customer_id END) AS month_0,
+    COUNT(DISTINCT CASE WHEN months_since_registration = 1 THEN customer_id END) AS month_1,
+    COUNT(DISTINCT CASE WHEN months_since_registration = 2 THEN customer_id END) AS month_2,
+    COUNT(DISTINCT CASE WHEN months_since_registration = 3 THEN customer_id END) AS month_3
 FROM cohort_data
 GROUP BY cohort_month
 ORDER BY cohort_month;
