@@ -3,7 +3,8 @@
 ![SQL](https://img.shields.io/badge/SQL-MySQL-blue?style=for-the-badge&logo=mysql)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-![Concepts](https://img.shields.io/badge/Level-Intermediate%20|%20Advanced-orange?style=for-the-badge)
+![Level](https://img.shields.io/badge/Level-Intermediate%20%7C%20Advanced-orange?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0-purple?style=for-the-badge)
 
 > 🚀 A comprehensive SQL project demonstrating advanced database concepts, query optimization, and real-world retail analytics scenarios.
 
@@ -12,209 +13,29 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Features](#-features)
-- [Database Schema](#-database-schema)
-- [SQL Concepts Covered](#-sql-concepts-covered)
-- [Installation & Setup](#-installation--setup)
-- [Usage Examples](#-usage-examples)
 - [Project Structure](#-project-structure)
-- [Sample Queries](#-sample-queries)
-- [Performance Optimization](#-performance-optimization)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [SQL Concepts Covered](#-sql-concepts-covered)
+- [Schema Design](#-schema-design)
+- [Usage Examples](#-usage-examples)
+- [Documentation](#-documentation)
 - [Contributing](#-contributing)
 - [License](#-license)
-- [Contact](#-contact)
 
 ---
 
 ## 🎯 Overview
 
-This project is a **comprehensive demonstration of intermediate and advanced SQL concepts** applied to a real-world retail sales management system. It showcases practical implementations of complex queries, stored procedures, triggers, and analytical functions used in modern database applications.
+This project is a complete retail sales analytics database system designed to demonstrate a wide range of SQL concepts from basic to advanced. It includes:
 
-### 🎓 Learning Objectives
-
-- Master **advanced SQL query techniques** for data analysis
-- Understand **database design principles** and normalization
-- Implement **business logic** using stored procedures and functions
-- Utilize **window functions** for complex analytics
-- Apply **query optimization** techniques for better performance
-- Create **meaningful views** for simplified data access
-
----
-
-## ✨ Features
-
-### 🏗️ Database Features
-
-- ✅ **Normalized database schema** (3NF) with 10+ related tables
-- ✅ **Foreign key constraints** for referential integrity
-- ✅ **Indexes** for query optimization
-- ✅ **Triggers** for automatic data updates
-- ✅ **Stored procedures** for business logic encapsulation
-- ✅ **User-defined functions** for reusable calculations
-- ✅ **Views** for simplified complex queries
-
-### 📊 Analytics Features
-
-- ✅ **RFM Analysis** (Recency, Frequency, Monetary)
-- ✅ **Customer Segmentation** based on purchase behavior
-- ✅ **Product Performance Tracking**
-- ✅ **Sales Forecasting** using moving averages
-- ✅ **Employee Performance Metrics**
-- ✅ **Inventory Management** with reorder alerts
-- ✅ **Cohort Analysis** for customer retention
-
----
-
-## 🗃️ Database Schema
-
-### Core Tables
-
-```
-┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
-│   CUSTOMERS     │      │      SALES       │      │    EMPLOYEES    │
-├─────────────────┤      ├──────────────────┤      ├─────────────────┤
-│ customer_id (PK)│◄────┤ customer_id (FK) │      │ employee_id (PK)│
-│ name            │      │ employee_id (FK) │─────►│ name            │
-│ email           │      │ sale_date        │      │ position        │
-│ tier_id (FK)    │      │ total_amount     │      │ salary          │
-└─────────────────┘      └──────────────────┘      └─────────────────┘
-                                  │
-                                  │
-                         ┌────────▼──────────┐
-                         │  SALES_DETAILS    │      ┌─────────────────┐
-                         ├───────────────────┤      │    PRODUCTS     │
-                         │ sale_id (FK)      │      ├─────────────────┤
-                         │ product_id (FK)   │─────►│ product_id (PK) │
-                         │ quantity          │      │ name            │
-                         │ line_total        │      │ category_id (FK)│
-                         └───────────────────┘      │ price           │
-                                                     │ stock           │
-                                                     └─────────────────┘
-```
-
-### Supporting Tables
-
-- **categories**: Product categorization
-- **customer_tiers**: Loyalty program tiers with discount levels
-- **payment_methods**: Supported payment options
-- **inventory_transactions**: Stock movement tracking
-
----
-
-## 🧠 SQL Concepts Covered
-
-### 📚 Intermediate Concepts
-
-| Concept | Description | Example Query |
-|---------|-------------|---------------|
-| **JOINs** | INNER, LEFT, RIGHT, CROSS, SELF joins | Customer purchase history |
-| **Subqueries** | Nested and correlated subqueries | Products above category average |
-| **Aggregation** | GROUP BY, HAVING, COUNT, SUM, AVG | Sales summaries |
-| **CASE Statements** | Conditional logic in queries | Customer segmentation |
-| **Views** | Virtual tables for complex queries | vw_sales_summary |
-| **Indexes** | Performance optimization | Composite indexes on sales |
-
-### 🚀 Advanced Concepts
-
-| Concept | Description | Example Query |
-|---------|-------------|---------------|
-| **Window Functions** | ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD | Product ranking by category |
-| **CTEs** | Common Table Expressions, recursive CTEs | Employee hierarchy, spending analysis |
-| **ROLLUP/CUBE** | Multi-dimensional aggregation | Sales by city and tier |
-| **Stored Procedures** | Reusable SQL code blocks | sp_add_sale, sp_customer_summary |
-| **Functions** | User-defined functions | fn_profit_margin, fn_get_customer_tier |
-| **Triggers** | Automatic actions on data changes | Update customer spending |
-| **Full-Text Search** | Advanced text searching | Product search by name |
-| **Query Optimization** | EXPLAIN, index strategies | Optimized sales reports |
-
----
-
-## 🛠️ Installation & Setup
-
-### Prerequisites
-
-- MySQL Server 8.0 or higher
-- MySQL Workbench (recommended) or any SQL client
-- Python 3.x (for Jupyter notebook examples)
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/punit745/SQl_Projects.git
-cd SQl_Projects
-```
-
-### Step 2: Create the Database
-
-```bash
-mysql -u root -p < Advanced_SQL_Queries.sql
-```
-
-Or manually in MySQL Workbench:
-
-1. Open MySQL Workbench
-2. Create a new connection
-3. Open `Advanced_SQL_Queries.sql`
-4. Execute the script (sections 1-2 for schema and data)
-
-### Step 3: Verify Installation
-
-```sql
-USE retail_sales_advanced;
-SHOW TABLES;
-SELECT COUNT(*) FROM sales;
-```
-
----
-
-## 💡 Usage Examples
-
-### Basic Queries
-
-```sql
--- Get all sales with customer details
-SELECT * FROM vw_sales_summary 
-WHERE sale_date >= '2024-01-01'
-ORDER BY total_amount DESC;
-
--- Check product performance
-SELECT * FROM vw_product_performance 
-WHERE total_revenue > 50000
-ORDER BY total_revenue DESC;
-```
-
-### Advanced Analytics
-
-```sql
--- Find top customers by spending
-WITH customer_spending AS (
-    SELECT customer_id, name, lifetime_value
-    FROM vw_customer_analytics
-    WHERE lifetime_value > 0
-)
-SELECT * FROM customer_spending
-ORDER BY lifetime_value DESC
-LIMIT 10;
-
--- Product ranking within categories
-SELECT 
-    category_name,
-    product_name,
-    total_revenue,
-    RANK() OVER (PARTITION BY category_name ORDER BY total_revenue DESC) AS rank
-FROM vw_product_performance
-WHERE total_revenue IS NOT NULL;
-```
-
-### Using Stored Procedures
-
-```sql
--- Add a new sale
-CALL sp_add_sale(1, 2, 2, 3, 2);
-
--- Get customer summary
-CALL sp_customer_summary(1);
-```
+- **Complete database schema** with proper normalization and relationships
+- **Stored procedures and functions** for business logic
+- **Triggers** for data integrity and audit logging
+- **Views** for simplified data access
+- **Advanced analytical queries** including CLV, churn prediction, and market basket analysis
+- **Security implementation** with user management and data masking
+- **Performance optimization** with proper indexing
 
 ---
 
@@ -222,164 +43,354 @@ CALL sp_customer_summary(1);
 
 ```
 SQl_Projects/
+├── 📂 schema/                    # Database schema files
+│   ├── 01_create_database.sql    # Database creation
+│   ├── 02_create_tables.sql      # Table definitions
+│   ├── 03_create_indexes.sql     # Performance indexes
+│   ├── 04_create_views.sql       # Data views
+│   ├── 05_create_procedures.sql  # Stored procedures
+│   ├── 06_create_functions.sql   # User-defined functions
+│   └── 07_create_triggers.sql    # Automatic triggers
 │
-├── README.md                      # Project documentation (this file)
-├── Advanced_SQL_Queries.sql       # Complete advanced SQL implementation
-├── Retail_Sale_Project.sql        # Basic schema (original)
-├── SQL_Project.ipynb              # Python MySQL integration examples
+├── 📂 queries/                   # SQL query examples
+│   ├── 07_json_functions.sql     # JSON operations in MySQL
+│   ├── 08_transactions.sql       # Transaction management
+│   ├── 09_advanced_analytics.sql # CLV, churn, market basket
+│   └── 10_security_audit.sql     # Security and auditing
 │
-└── (Future additions)
-    ├── docs/                      # Additional documentation
-    ├── images/                    # Schema diagrams and screenshots
-    └── sample_data/               # Additional sample datasets
+├── 📂 data/                      # Data management
+│   ├── seed_data.sql             # Sample data
+│   ├── generate_test_data.sql    # Bulk test data generation
+│   └── validation_checks.sql     # Data quality checks
+│
+├── 📂 scripts/                   # Utility scripts
+│   ├── setup_database.bat        # Windows setup script
+│   ├── backup_database.bat       # Backup utility
+│   └── run_query.bat             # Query runner
+│
+├── 📂 docs/                      # Documentation
+├── 📂 notebooks/                 # Jupyter notebooks
+│
+├── 📄 Advanced_SQL_Queries.sql   # Legacy comprehensive queries
+├── 📄 Retail_Sale_Project.sql    # Basic SQL examples
+├── 📄 SQL_Project.ipynb          # Jupyter notebook integration
+│
+├── 📄 README.md                  # This file
+├── 📄 DATABASE_SCHEMA.md         # Schema documentation
+├── 📄 SQL_CONCEPTS_GUIDE.md      # SQL concepts reference
+├── 📄 PRACTICAL_EXAMPLES.md      # Real-world examples
+├── 📄 QUICK_START.md             # Quick start guide
+└── 📄 TROUBLESHOOTING.md         # Common issues and solutions
 ```
 
 ---
 
-## 🔍 Sample Queries
+## ✨ Features
 
-### 1️⃣ Customer Segmentation (RFM Analysis)
+### Core Features
+| Feature | Description |
+|---------|-------------|
+| 🏗️ **Modular Schema** | Organized schema files for easy maintenance |
+| 📊 **Analytics Queries** | CLV, seasonality, churn, market basket analysis |
+| 🔐 **Security** | User management, role-based access, data masking |
+| 📝 **Audit Logging** | Complete audit trail for compliance |
+| ⚡ **Performance** | Optimized indexes and query patterns |
+| 🧪 **Test Data** | Scripts to generate realistic test data |
 
+### SQL Concepts Covered
+
+#### Basic Concepts
+- SELECT, INSERT, UPDATE, DELETE
+- WHERE, ORDER BY, GROUP BY, HAVING
+- JOINs (INNER, LEFT, RIGHT, FULL)
+- Aggregations (SUM, COUNT, AVG, MIN, MAX)
+
+#### Intermediate Concepts
+- Subqueries and Correlated Subqueries
+- Window Functions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD)
+- Common Table Expressions (CTEs)
+- CASE Statements and Conditional Logic
+- String and Date Functions
+
+#### Advanced Concepts
+- Recursive CTEs (Hierarchical Data)
+- Stored Procedures with Error Handling
+- User-Defined Functions
+- Triggers (BEFORE/AFTER INSERT/UPDATE/DELETE)
+- Transactions and ACID Properties
+- JSON Functions and Operations
+- Dynamic SQL (PREPARE, EXECUTE)
+- Security and User Management
+- Performance Optimization
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- MySQL 8.0 or higher
+- MySQL Workbench (recommended) or any SQL client
+- Git (to clone the repository)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/SQL_Projects.git
+   cd SQL_Projects
+   ```
+
+2. **Run the setup script** (Windows)
+   ```batch
+   cd scripts
+   setup_database.bat
+   ```
+
+   Or manually run the schema files in order:
+   ```sql
+   SOURCE schema/01_create_database.sql;
+   SOURCE schema/02_create_tables.sql;
+   SOURCE schema/03_create_indexes.sql;
+   SOURCE schema/04_create_views.sql;
+   SOURCE schema/05_create_procedures.sql;
+   SOURCE schema/06_create_functions.sql;
+   SOURCE schema/07_create_triggers.sql;
+   SOURCE data/seed_data.sql;
+   ```
+
+3. **Verify installation**
+   ```sql
+   USE retail_sales_advanced;
+   SHOW TABLES;
+   ```
+
+---
+
+## 📊 Schema Design
+
+### Entity Relationship Diagram
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  customer_tiers │     │   categories    │     │ payment_methods │
+│     (lookup)    │     │    (lookup)     │     │    (lookup)     │
+└────────┬────────┘     └────────┬────────┘     └────────┬────────┘
+         │                       │                       │
+         │ 1:N                   │ 1:N                   │ 1:N
+         ▼                       ▼                       │
+┌─────────────────┐     ┌─────────────────┐              │
+│    customers    │     │    products     │              │
+│  (core entity)  │     │  (core entity)  │              │
+└────────┬────────┘     └────────┬────────┘              │
+         │                       │                       │
+         │ 1:N                   │ 1:N                   │
+         ▼                       ▼                       ▼
+┌─────────────────────────────────────────────────────────┐
+│                       sales                              │
+│                  (transaction header)                    │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         │ 1:N
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│                   sales_details                          │
+│                 (transaction lines)                      │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Core Tables
+| Table | Description |
+|-------|-------------|
+| `customers` | Customer information with tier assignment |
+| `products` | Product catalog with pricing and inventory |
+| `sales` | Sales transaction headers |
+| `sales_details` | Line items for each sale |
+| `employees` | Staff information with hierarchy |
+| `categories` | Product categorization |
+| `customer_tiers` | Loyalty program tiers |
+| `payment_methods` | Supported payment options |
+
+### Support Tables
+| Table | Description |
+|-------|-------------|
+| `inventory_transactions` | Stock movement tracking |
+| `audit_log` | Data change audit trail |
+| `system_logs` | Application event logging |
+
+---
+
+## 📖 Usage Examples
+
+### Basic Query - Top Customers
 ```sql
--- Classify customers based on Recency, Frequency, and Monetary value
+SELECT customer_id, name, total_spent
+FROM customers
+ORDER BY total_spent DESC
+LIMIT 10;
+```
+
+### Using Views
+```sql
+-- Daily sales summary
+SELECT * FROM vw_daily_sales
+WHERE sale_date >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY);
+
+-- Product performance
+SELECT * FROM vw_product_performance
+ORDER BY total_revenue DESC;
+```
+
+### Calling Stored Procedures
+```sql
+-- Get customer summary
+CALL sp_customer_summary(1);
+
+-- Generate sales report
+CALL sp_sales_report('2024-01-01', '2024-12-31', 'monthly');
+
+-- Inventory alerts
+CALL sp_inventory_alerts();
+```
+
+### Using Functions
+```sql
+-- Calculate customer health score
 SELECT 
     customer_id,
     name,
-    CASE 
-        WHEN rfm_total_score >= 12 THEN 'Champions'
-        WHEN rfm_total_score >= 9 THEN 'Loyal Customers'
-        WHEN rfm_total_score >= 6 THEN 'Potential'
-        ELSE 'At Risk'
-    END AS segment
-FROM (
-    -- RFM calculation query
-    -- See Advanced_SQL_Queries.sql Query #18 for full implementation
-) rfm_analysis;
+    fn_customer_health_score(customer_id) AS health_score,
+    fn_customer_segment(customer_id) AS segment
+FROM customers;
+
+-- Mask sensitive data
+SELECT 
+    fn_mask_email(email) AS masked_email,
+    fn_mask_phone(phone) AS masked_phone
+FROM customers;
 ```
 
-### 2️⃣ Sales Trends with Moving Averages
-
+### Advanced Analytics
 ```sql
--- Track daily sales with 7-day and 30-day moving averages
-SELECT 
-    sale_date,
-    daily_total,
-    AVG(daily_total) OVER (
-        ORDER BY sale_date 
-        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-    ) AS ma_7_day
-FROM daily_sales;
-```
+-- Run CLV analysis
+-- See queries/09_advanced_analytics.sql for full queries
 
-### 3️⃣ Employee Performance Ranking
-
-```sql
--- Rank employees by total sales revenue
-SELECT 
-    name,
-    total_revenue,
-    RANK() OVER (ORDER BY total_revenue DESC) AS performance_rank
-FROM employee_performance;
-```
-
-### 4️⃣ Product Affinity Analysis
-
-```sql
--- Find products frequently bought together
-SELECT 
-    p1.name AS product_1,
-    p2.name AS product_2,
-    COUNT(*) AS bought_together_count
-FROM sales_details sd1
-JOIN sales_details sd2 ON sd1.sale_id = sd2.sale_id
-JOIN products p1 ON sd1.product_id = p1.product_id
-JOIN products p2 ON sd2.product_id = p2.product_id
-WHERE sd1.product_id < sd2.product_id
-GROUP BY p1.name, p2.name
-ORDER BY bought_together_count DESC;
+-- Customer Lifetime Value
+WITH customer_metrics AS (
+    SELECT 
+        c.customer_id,
+        COUNT(s.sale_id) AS total_orders,
+        SUM(s.total_amount) AS total_revenue,
+        AVG(s.total_amount) AS avg_order_value
+    FROM customers c
+    JOIN sales s ON c.customer_id = s.customer_id
+    WHERE s.status = 'completed'
+    GROUP BY c.customer_id
+)
+SELECT * FROM customer_metrics
+ORDER BY total_revenue DESC;
 ```
 
 ---
 
-## ⚡ Performance Optimization
+## 📚 Documentation
 
-### Indexing Strategy
+| Document | Description |
+|----------|-------------|
+| [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md) | Complete schema documentation |
+| [SQL_CONCEPTS_GUIDE.md](SQL_CONCEPTS_GUIDE.md) | SQL concepts reference |
+| [PRACTICAL_EXAMPLES.md](PRACTICAL_EXAMPLES.md) | Real-world query examples |
+| [QUICK_START.md](QUICK_START.md) | Getting started guide |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Common issues and solutions |
 
+---
+
+## 🧪 Testing
+
+### Generate Test Data
 ```sql
--- Indexes created for optimal query performance
-CREATE INDEX idx_sale_date_customer ON sales(sale_date, customer_id);
-CREATE INDEX idx_category ON products(category_id);
-CREATE INDEX idx_customer_tier ON customers(tier_id);
+-- Generate 1000 customers, 100 products, 5000 sales
+CALL sp_generate_all_test_data(1000, 100, 5000);
 ```
 
-### Query Optimization Tips
+### Run Data Validation
+```sql
+-- Check data integrity
+CALL sp_run_all_validations();
+```
 
-1. **Use EXPLAIN** to analyze query execution plans
-2. **Create appropriate indexes** on frequently queried columns
-3. **Use JOINs instead of subqueries** where possible
-4. **Limit result sets** with WHERE clauses and LIMIT
-5. **Use covering indexes** to avoid table lookups
+### Clean Up Test Data
+```sql
+CALL sp_cleanup_test_data();
+```
+
+---
+
+## 🔧 Utility Scripts
+
+### Windows Scripts
+```batch
+# Set up the database
+scripts\setup_database.bat
+
+# Backup the database
+scripts\backup_database.bat
+
+# Run a query file
+scripts\run_query.bat queries\09_advanced_analytics.sql
+```
+
+---
+
+## 🎓 Learning Path
+
+### Beginner Track
+1. Start with `Retail_Sale_Project.sql` for basic concepts
+2. Review `SQL_CONCEPTS_GUIDE.md`
+3. Practice with sample queries in `PRACTICAL_EXAMPLES.md`
+
+### Intermediate Track
+1. Study `schema/04_create_views.sql` for view creation
+2. Explore `queries/07_json_functions.sql`
+3. Practice window functions and CTEs
+
+### Advanced Track
+1. Learn stored procedures in `schema/05_create_procedures.sql`
+2. Understand transactions in `queries/08_transactions.sql`
+3. Master analytics in `queries/09_advanced_analytics.sql`
+4. Implement security from `queries/10_security_audit.sql`
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** to the branch (`git push origin feature/AmazingFeature`)
-5. **Open** a Pull Request
-
-### Contribution Ideas
-
-- 📊 Add more sample datasets
-- 📈 Create data visualization examples
-- 🧪 Add query performance benchmarks
-- 📖 Improve documentation
-- 🔧 Add more stored procedures/functions
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
 ---
 
-## 📜 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Contact
-
-**Punit Pal**
-
-- GitHub: [@punit745](https://github.com/punit745)
-- Project Link: [https://github.com/punit745/SQl_Projects](https://github.com/punit745/SQl_Projects)
-
----
-
 ## 🙏 Acknowledgments
 
-- MySQL Documentation for comprehensive SQL references
-- The SQL community for best practices and optimization techniques
-- Various online resources for advanced SQL concepts
-
----
-
-## 📊 Statistics
-
-- **10+ Database Tables** with proper relationships
-- **22+ Advanced Query Examples** covering various concepts
-- **5+ Stored Procedures** for business logic
-- **3+ Triggers** for automatic data management
-- **2+ User-Defined Functions** for calculations
-- **5+ Views** for simplified data access
+- MySQL Documentation
+- SQL Performance Explained by Markus Winand
+- Real-world retail analytics patterns
 
 ---
 
 <div align="center">
 
-### ⭐ If you find this project helpful, please give it a star!
+**Made with ❤️ for SQL learners**
 
-**Made with ❤️ and SQL**
+[⬆ Back to Top](#-advanced-sql-project---retail-sales-analytics)
 
 </div>
