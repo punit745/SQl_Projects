@@ -88,15 +88,13 @@ CREATE OR REPLACE VIEW vw_monthly_sales AS
 SELECT 
     YEAR(sale_date) AS sale_year,
     MONTH(sale_date) AS sale_month,
-    DATE_FORMAT(sale_date, '%Y-%m') AS year_month,
-    MONTHNAME(sale_date) AS month_name,
     COUNT(DISTINCT sale_id) AS total_orders,
     COUNT(DISTINCT customer_id) AS unique_customers,
     SUM(total_amount) AS total_revenue,
     AVG(total_amount) AS avg_order_value
 FROM sales
 WHERE status = 'completed'
-GROUP BY YEAR(sale_date), MONTH(sale_date), DATE_FORMAT(sale_date, '%Y-%m'), MONTHNAME(sale_date);
+GROUP BY YEAR(sale_date), MONTH(sale_date);
 
 -- ================================================================
 -- PRODUCT VIEWS
@@ -329,8 +327,7 @@ SELECT 'All views created successfully!' AS status;
 
 -- List all views
 SELECT 
-    TABLE_NAME AS view_name,
-    TABLE_COMMENT AS description
+    TABLE_NAME AS view_name
 FROM INFORMATION_SCHEMA.VIEWS
 WHERE TABLE_SCHEMA = 'retail_sales_advanced'
 ORDER BY TABLE_NAME;
